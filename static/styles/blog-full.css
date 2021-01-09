@@ -1,0 +1,45 @@
+body {
+    /* background-color: #282828; */
+}
+
+.cover-image {
+    width: 100%;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.full-content {
+    margin-top: 30px;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.author {
+    position: relative;
+    width: 300px;
+}
+
+.content-body {
+    font-size: x-large;
+}
+
+.author img {
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 50px;
+}
+
+html { 
+    background: url(../assets/images/bg_blog_full.svg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.l_d_percent {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 24px;
+}

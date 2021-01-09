@@ -1,0 +1,10 @@
+body {
+    padding: 0px;
+}
+
+.editor-block {
+    margin-left: 20%;
+    margin-right: 20%;
+    position: relative;
+    padding: 40px;
+}

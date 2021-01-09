@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="static/styles/bootstrap.min.css"> -->
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/blog-full.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/new_blog.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 0;">
+    <a class="navbar-brand" href="#"><img height="40px" alt="Brand" src="{{ url_for('static', filename='assets/images/devpost_logo_written_trans.png') }}"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Explore
+            <!-- <span class="sr-only">(current)</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/new_blog">New</a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Category</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Educational</a>
+            <a class="dropdown-item" href="#">Travel</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Fitness</a>
+          </div>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+
+      <button class="btn btn-info my-2 my-sm-0" style="margin-right: 20px;" disabled type="submit">BETA</button>
+
+      {% if isLoggedIn == True %}
+        <a href="/logout" style="margin-right: 20px; visibility: visible; "><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+        <a href="/login" style="margin-right: 20px; display: none;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+        <button class="btn btn-secondary my-2 my-sm-0" style="visibility: visible;" disabled type="submit">{{ current_user_name }}</button>
+      {% else %}
+        <a href="/logout" style="margin-right: 20px; display: none;"><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+        <a href="/login" style="margin-right: 20px; visibility: visible;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+        <button class="btn btn-secondary my-2 my-sm-0" style="display: none;" disabled type="submit">""</button>
+      {% endif %}
+
+
+
+
+      <!-- <a href="/logout" style="margin-right: 20px;"><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+      <a href="/login" style="margin-right: 20px;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+      <button class="btn btn-secondary my-2 my-sm-0" disabled type="submit">Ritik Kanotra</button> -->
+
+
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+    </div>
+  </nav>
+
+      <!-- <img class="cover-image" src="https://d1y2qj23ol72q6.cloudfront.net/2019/06/python-blog.jpg"/> -->
+
+      
+
+      <div class="card" style="width: 100%; height: 600px; position: relative; top: 0px; margin-left: 0px; padding-top: 150px;">
+    
+        <img height="450px" width="100%" style="opacity: 0.1;" src="/static/assets/images/user_cache/{{ blog['coverimage'] }}">
+      
+      </div>
+  
+      <h1 id="blog_title" style="text-shadow: 1px 1px 2px black, 0 0 2px black, 0 0 2px black; color: black; position: absolute; top: 80px; margin-left: 10%; margin-right: 10%; text-align: left; font-family: 'Righteous', cursive; margin-bottom: 20px; font-size: 60px;">{{ blog['title'] }}</h1>
+  
+      <div style="position: absolute; top: 280px; width: 100%;">
+
+        <div class="card editor-block" style="height: 70px; color: black; margin-bottom: 20px; padding: 5px;">
+
+          <div class="author" style="text-align: left;">
+
+            <img src="{{ url_for('static', filename='assets/images/user_icon_default.png') }}" />
+
+            <div style="font-family: 'Varela Round', sans-serif; position: absolute; left: 80px; top: 7px; font-size: 20px;">{{ user_name }}</div>
+
+            <h6 style="font-family: 'Roboto Mono', monospace; position: absolute; left: 80px; top: 36px;">{{ blog['date'] }}</h6>
+
+          </div>
+        
+
+        
+        </div>
+      
+        <div class="card editor-block" style="min-height: 700px; color: black; margin-bottom: 10px;">
+  
+          
+          {{ blog['content'] | safe }}
+
+            <!-- text to show -->
+          
+  
+        </div>
+
+        <div class="card editor-block" style="height: 70px; width: 20%; color: black; margin-bottom: 20px; padding: 5px;">
+
+          <!-- <div class="author" style="text-align: left;">
+
+            <img src="{{ url_for('static', filename='assets/images/user_icon_default.png') }}" />
+
+            <div style="font-family: 'Varela Round', sans-serif; position: absolute; left: 80px; top: 7px; font-size: 20px;">{{ user_name }}</div>
+
+            <h6 style="font-family: 'Roboto Mono', monospace; position: absolute; left: 80px; top: 36px;">{{ blog['date'] }}</h6>
+
+          </div> -->
+
+          <img id="like_img" src="{{ url_for('static', filename='assets/images/like_ico.png') }}" 
+          style="width: 40px; height: 40px; position: absolute; left: 30px; top: 14px;" alt="Like">
+
+          <div id='likes' class="l_d_percent" style="position: absolute; left: 85px; top: 18px;">{{ blog['likes'] }}</div>
+
+          <div id='dislikes' class="l_d_percent" style="position: absolute; right: 85px; top: 18px;">{{ blog['dislikes'] }}</div>
+
+          <img id="dislike_img" src="{{ url_for('static', filename='assets/images/dislike_ico.png') }}" 
+          style="width: 40px; height: 40px; position: absolute; right: 30px; top: 14px;" alt="Like">
+        
+
+        
+        </div>
+  
+        <footer>
+          <div class="footer" id="footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      
+                  <h4><img style="height: 60px" src="{{ url_for('static', filename='assets/images/devpost_logo_image.png') }}" alt="logo"> &nbspdevpost.herokuapp.com </h4>
+                  <p>
+                      We ,through our website Devpost, are interested to contribute in the learning journey of developers by enabling all the developers from different parts of the world to come and contribute to the growth of the developers community by writing and posting blogs.
+                  </p>
+                </div>
+                <div class="col-lg-3 col-sm-2 col-xs-3">
+                  <h3> Contact </h3>
+                  <ul>
+                    <li><a class="email" href="#"> devpost.app@gmail.com </a></li>
+                    <br />
+                    <li>
+                      <p> Computer Science and Engineering Department PSIT </p>
+                    </li>
+                    <li>
+                      <p> Bhauti, Kanpur-209305 </p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-3 col-sm-2 col-xs-3">
+                  <ul>
+                    <li>
+                      <h6> <a href="/about" style="margin-top: 5em"> ABOUT US</a>
+                      </h6>
+                    </li>
+                    <li>
+                      <h6><a href="mailto:devpost.app@gmail.com"> CONTACT US </a>
+                        </h6>
+                    </li>
+                    <li>
+                      <h6><a href="/login"> REGISTER </a>
+                        </h6>
+                    </li>
+                    <li>
+                      <h6><a href="/login"> LOGIN </a>
+                        </h6>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      
+            <div class="footer-bottom">
+              <div class="container">
+                <p class="pull-left copyright"> Copyright © Ritik Kanotra 2021. All right reserved. </p>
+      
+              </div>
+            </div>
+            </div>
+        </footer>
+  
+      </div>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script>
+
+        var blog_title = $('#blog_title').text()
+
+        var likes = parseInt($('#likes').text())
+        var dislikes = parseInt($('#dislikes').text())
+
+        var liked = 0;
+        var disliked = 0;
+
+        setIcon();
+
+        $('#like_img').click(function(e) {
+          // $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
+          liked = 1;
+          disliked = 0;
+          likes = likes + 1;
+
+          e.preventDefault()
+            $.getJSON('/update_like_dislike/' + blog_title + '/1/0',
+                function(liked, disliked) {
+              //do nothing
+            });
+            // return false;
+
+          setIcon();
+        });
+
+        $('#dislike_img').click(function(e) {
+          // $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/disliked_ico.png') }}");
+          liked = 0;
+          disliked = 1;
+          dislikes = dislikes + 1;
+
+          e.preventDefault()
+            $.getJSON('/update_like_dislike/' + blog_title + '/0/1',
+                function(liked, disliked) {
+              //do nothing
+            });
+          setIcon();
+        });
+
+        function setIcon() {
+
+          updateLikeDislike()
+
+          if (liked == 1) {
+            $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
+            $('#like_img').off('click');
+            $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/dislike_ico.png') }}");
+            // $('#dislike_img').on('click')
+            $('#dislike_img').click(function(e) {
+              // $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/disliked_ico.png') }}");
+
+              // likes = likes + 1;
+              dislikes = dislikes + 1;
+
+              liked = 0;
+              disliked = 1;
+              e.preventDefault()
+                $.getJSON('/update_like_dislike/' + blog_title + '/0/1',
+                    function(liked, disliked) {
+                  //do nothing
+                });
+              setIcon();
+            });
+          }
+
+          if (disliked == 1) {
+            $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/disliked_ico.png') }}");
+            $('#dislike_img').off('click');
+            $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/like_ico.png') }}");
+            $('#like_img').click(function(e) {
+              // $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
+
+              likes = likes + 1;
+              // dislikes = dislikes + 1;
+
+              liked = 1;
+              disliked = 0;
+              e.preventDefault()
+                $.getJSON('/update_like_dislike/' + blog_title + '/1/0',
+                    function(liked, disliked) {
+                  //do nothing
+                });
+              setIcon();
+            });
+          }
+        }
+
+        // $(function() {
+        //   $('a#like_img').on('click', function(e) {
+        //     e.preventDefault()
+        //     $.getJSON('/update_like_dislike',
+        //         function(liked, disliked) {
+        //       //do nothing
+        //     });
+        //     return false;
+        //   });
+        // });
+
+        function updateLikeDislike() {
+          $('#likes').text(likes.toString());
+          $('#dislikes').text(dislikes.toString());
+        }
+
+      </script>
+    
+</body>
+</html>

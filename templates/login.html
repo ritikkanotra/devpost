@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	  <meta http-equiv="x-ua-compatible" content="ie=edge">
+	  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+
+<body class="bg">
+
+  <img class="ill_img" src="{{ url_for('static', filename='assets/images/login_illustration.svg') }}">
+
+  <img class="logo_img" src="{{ url_for('static', filename='assets/images/devpost_logo_image.png') }}">
+
+  <img class="logo_img" src="{{ url_for('static', filename='assets/images/devpost_logo_written_trans.png') }}">
+
+<div class="form">
+  <div class="tab-header">
+    <div class="active">Sign Up</div>
+    <div>Sign In</div>
+  </div>
+  <div class="tab-content">
+    <div class="tab-body active">
+      <form action="/register" method="post">
+        <div class="form-element">
+          <input name="name" type="text" placeholder="Name" required>
+        </div>
+        <div class="form-element">
+          <input name="email" type="email" placeholder="Email" required>
+        </div>
+        <div class="form-element">
+          <input name="password" type="password" placeholder="Password" required>
+        </div>
+        <div class="form-element">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="tab-body">
+      <form action="/login" method="post">
+        <div class="form-element">
+          <input name="email" type="email" placeholder="Email" required>
+        </div>
+        <div class="form-element">
+          <input name="password" type="password" placeholder="Password" required>
+        </div>
+        <div class="form-element">
+          <button type="submit">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

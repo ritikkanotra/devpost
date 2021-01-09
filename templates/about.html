@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="static/styles/bootstrap.min.css"> -->
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/blog-full.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/new_blog.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 0;">
+    <a class="navbar-brand" href="#"><img height="40px" alt="Brand" src="{{ url_for('static', filename='assets/images/devpost_logo_written_trans.png') }}"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Explore
+            <!-- <span class="sr-only">(current)</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/new_blog">New</a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Category</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Educational</a>
+            <a class="dropdown-item" href="#">Travel</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Fitness</a>
+          </div>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+
+      <button class="btn btn-info my-2 my-sm-0" style="margin-right: 20px;" disabled type="submit">BETA</button>
+
+      {% if isLoggedIn == True %}
+        <a href="/logout" style="margin-right: 20px; visibility: visible; "><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+        <a href="/login" style="margin-right: 20px; display: none;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+        <button class="btn btn-secondary my-2 my-sm-0" style="visibility: visible;" disabled type="submit">{{ current_user_name }}</button>
+      {% else %}
+        <a href="/logout" style="margin-right: 20px; display: none;"><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+        <a href="/login" style="margin-right: 20px; visibility: visible;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+        <button class="btn btn-secondary my-2 my-sm-0" style="display: none;" disabled type="submit">""</button>
+      {% endif %}
+
+
+
+
+      <!-- <a href="/logout" style="margin-right: 20px;"><button class="btn btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+      <a href="/login" style="margin-right: 20px;"><button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button></a>
+      <button class="btn btn-secondary my-2 my-sm-0" disabled type="submit">Ritik Kanotra</button> -->
+
+
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+    </div>
+  </nav>
+
+
+  <div class="card editor-block" 
+  style="min-height: 700px; color: black; margin-bottom: 50px; font-size: 20px; text-align: left; margin-top: 50px; padding: 5%;">
+  
+    <h1 style="text-align: center; margin-bottom: 40px; font-family: 'Work Sans', sans-serif;">About Us</h1>
+
+    <p style="font-family: 'Lobster', cursive; font-size: 30px;">
+        "Breaking the norms of learning from one’s own experience,to learning from each others’ experience"
+    </p>
+
+    <br>
+    <br>
+
+    <p style="font-family: 'Montserrat', sans-serif; font-size: 20px;">
+        Development has been the driving force of the IT Industry from the ages and will prove to be the same in the times to come. We ,through our website <b>Devpost</b>, are interested to contribute in the learning journey of developers by enabling all the developers from different parts of the world to come and contribute to the growth of the developers community by writing and posting informative, suggestive,precise but insightful blogs so as to benefit others in the community.<br><br>
+The blogs may relate to any type of development be it - web, android ,software or some helpful content about any trending technology. The blogs will be judged on the basis of upvotes and downvotes to ensure the quality check.<br><br>
+<b>Open source</b> contribution is emerging as a new trending habit of current developers.To encourage others that are interested but lack guidance , this website will prove to be a turning point heading their journey from a <b>beginner to a pro</b> in development pushing themselves to the edge by learning from others’ experience.
+
+    </p>
+
+  </div>
+
+  <footer>
+    <div class="footer" id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+            <h4><img style="height: 60px" src="{{ url_for('static', filename='assets/images/devpost_logo_image.png') }}" alt="logo"> &nbspdevpost.herokuapp.com </h4>
+            <p>
+                We ,through our website Devpost, are interested to contribute in the learning journey of developers by enabling all the developers from different parts of the world to come and contribute to the growth of the developers community by writing and posting blogs.
+            </p>
+          </div>
+          <div class="col-lg-3 col-sm-2 col-xs-3">
+            <h3> Contact </h3>
+            <ul>
+              <li><a class="email" href="#"> devpost.app@gmail.com </a></li>
+              <br />
+              <li>
+                <p> Computer Science and Engineering Department PSIT </p>
+              </li>
+              <li>
+                <p> Bhauti, Kanpur-209305 </p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-sm-2 col-xs-3">
+            <ul>
+              <li>
+                <h6> <a href="/about" style="margin-top: 5em"> ABOUT US</a>
+                </h6>
+              </li>
+              <li>
+                <h6><a href="mailto:devpost.app@gmail.com"> CONTACT US </a>
+                  </h6>
+              </li>
+              <li>
+                <h6><a href="/login"> REGISTER </a>
+                  </h6>
+              </li>
+              <li>
+                <h6><a href="/login"> LOGIN </a>
+                  </h6>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="pull-left copyright"> Copyright © Ritik Kanotra 2021. All right reserved. </p>
+
+        </div>
+      </div>
+      </div>
+  </footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+.card-container {
+    display: grid;
+    padding: 2rem 15rem;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    grid-gap: 1rem;
+}
+
+html { 
+    background: url(../assets/images/white_bg_full.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

@@ -1,0 +1,106 @@
+
+
+body {
+ margin: 35px;
+
+  font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ebebeb;
+  text-align: left;
+  background-color: #2b3e50;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 70px;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+
+.k{
+	  overflow: auto;
+  resize: vertical;
+  height: 30px;
+  width: 450px;
+  background:lightblue;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+  height: 250px;
+  width: 600px;
+  background:lightblue;
+}
+
+a {
+  color: #2a9fd6;
+  text-decoration: none;
+  background-color: transparent;
+  text-align: right;
+}
+
+a:hover {
+  color: #1d7097;
+  text-decoration: underline;
+
+}
+
+a:not([href]):not([class]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:not([href]):not([class]):hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  border-radius: 0;
+}
+
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+blockquote {
+  
+  margin: 0 0 1rem;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+
+
+
+
+
+
+
+
