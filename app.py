@@ -39,18 +39,28 @@ def convert_image(image_data):
     mime = magic.Magic(mime=True)
     mime_type = mime.from_file(file_path)
 
+    print(mime_type)
+
     if mime_type == 'image/jpeg':
         os.rename(file_path, file_path + '.jpg')
+        # file_path += '.jpg'
+        f_name = f_name + ".jpg"
     elif mime_type == 'image/png':
         os.rename(file_path, file_path + '.png')
+        f_name = f_name + ".png"
     elif mime_type == 'image/gif':
         os.rename(file_path, file_path + '.gif')
+        f_name = f_name + ".gif"
     elif mime_type == 'image/bmp':
         os.rename(file_path, file_path + '.bmp')
+        f_name = f_name + ".bmp"
     elif mime_type == 'image/tiff':
         os.rename(file_path, file_path + '.tiff')
+        f_name = f_name + ".tiff"
+
+    print(file_path)
     
-    return f_name + '.png'
+    return f_name
 
 
 
@@ -85,19 +95,13 @@ def register():
         name = request.form.get('name')
         email = request.form.get('email')
         password_hash = generate_password_hash(request.form.get('password'))
-        # confirm_password_hash = generate_password_hash(request.form.get('confirm_password'))
-
-        # if request.form.get('password') != request.form.get('confirm_password'):
-        #     return render_template("apology.html", msg="Password not matched!", back="/register")
 
         rows = mydb.execute("SELECT * FROM users WHERE email=:email;", email=email)
         
         if len(rows) != 0:
             return render_template("apology.html", msg="Email address already registered!", back="/register")
 
-        # with sqlite3.connect("main.db") as mydb:
         mydb.execute("INSERT INTO users (name, email, password_hash) VALUES(?, ?, ?);", name, email, password_hash)
-        # mydb.commit()
         return redirect("/")
 
 @app.route("/logout")
@@ -123,25 +127,7 @@ def explore():
     
     blog_rows = mydb.execute("SELECT * FROM blogs;")
     for row in blog_rows:
-        # print(row['coverimage'])
-
-        # file_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(uuid.uuid1().hex))
-        # with open(file_path, 'wb') as f:
-        #     f.write(row['coverimage'])
         
-        # mime = magic.Magic(mime=True)
-        # mime_type = mime.from_file(file_path)
-
-        # if mime_type == 'image/jpeg':
-        #     os.rename(file_path, file_path + '.jpg')
-        # elif mime_type == 'image/png':
-        #     os.rename(file_path, file_path + '.png')
-        # elif mime_type == 'image/gif':
-        #     os.rename(file_path, file_path + '.gif')
-        # elif mime_type == 'image/bmp':
-        #     os.rename(file_path, file_path + '.bmp')
-        # elif mime_type == 'image/tiff':
-        #     os.rename(file_path, file_path + '.tiff')
         
         row['coverimage'] = convert_image(row['coverimage'])
         # print(row['coverimage'])

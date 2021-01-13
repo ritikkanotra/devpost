@@ -236,7 +236,6 @@
         setIcon();
 
         $('#like_img').click(function(e) {
-          // $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
           liked = 1;
           disliked = 0;
           likes = likes + 1;
@@ -244,15 +243,13 @@
           e.preventDefault()
             $.getJSON('/update_like_dislike/' + blog_title + '/1/0',
                 function(liked, disliked) {
-              //do nothing
+                  
             });
-            // return false;
 
           setIcon();
         });
 
         $('#dislike_img').click(function(e) {
-          // $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/disliked_ico.png') }}");
           liked = 0;
           disliked = 1;
           dislikes = dislikes + 1;
@@ -260,7 +257,7 @@
           e.preventDefault()
             $.getJSON('/update_like_dislike/' + blog_title + '/0/1',
                 function(liked, disliked) {
-              //do nothing
+                  
             });
           setIcon();
         });
@@ -273,11 +270,7 @@
             $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
             $('#like_img').off('click');
             $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/dislike_ico.png') }}");
-            // $('#dislike_img').on('click')
             $('#dislike_img').click(function(e) {
-              // $('#dislike_img').attr('src', "{{ url_for('static', filename='assets/images/disliked_ico.png') }}");
-
-              // likes = likes + 1;
               dislikes = dislikes + 1;
 
               liked = 0;
@@ -285,7 +278,7 @@
               e.preventDefault()
                 $.getJSON('/update_like_dislike/' + blog_title + '/0/1',
                     function(liked, disliked) {
-                  //do nothing
+
                 });
               setIcon();
             });
@@ -296,10 +289,8 @@
             $('#dislike_img').off('click');
             $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/like_ico.png') }}");
             $('#like_img').click(function(e) {
-              // $('#like_img').attr('src', "{{ url_for('static', filename='assets/images/liked_ico.png') }}");
 
               likes = likes + 1;
-              // dislikes = dislikes + 1;
 
               liked = 1;
               disliked = 0;
@@ -312,17 +303,6 @@
             });
           }
         }
-
-        // $(function() {
-        //   $('a#like_img').on('click', function(e) {
-        //     e.preventDefault()
-        //     $.getJSON('/update_like_dislike',
-        //         function(liked, disliked) {
-        //       //do nothing
-        //     });
-        //     return false;
-        //   });
-        // });
 
         function updateLikeDislike() {
           $('#likes').text(likes.toString());
